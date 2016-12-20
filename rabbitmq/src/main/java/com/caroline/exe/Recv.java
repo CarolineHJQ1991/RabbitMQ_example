@@ -18,7 +18,7 @@ public class Recv {
     //队列名称
     private final static String QUEUE_NAME = "hello";
 
-    public static void main(String argv) throws IOException, TimeoutException, InterruptedException {
+    public static void main(String[] argv) throws IOException, TimeoutException, InterruptedException {
         //打开连接和创建频道, 与发送端一样
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
