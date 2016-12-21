@@ -3,6 +3,7 @@ package com.caroline.wq;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.MessageProperties;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -23,6 +24,9 @@ public class NewTask {
         Channel channel = connection.createChannel();
         //声明队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        //声明消息为持久化, 即使在任务执行中,服务断掉, 消息会接着执行完
+//        boolean durable = true;
+//        channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
         //发送10条消息,依次在消息后面附加1-10个点
         for (int i = 0; i < 5; i++) {
             String dots = "";
@@ -31,6 +35,8 @@ public class NewTask {
             }
             String message = "helloworld" + dots + dots.length();
             channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+        //需要标识我们的信息为持久化的。通过设置MessageProperties（implements BasicProperties）值为PERSISTENT_TEXT_PLAIN。
+//            channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN,message.getBytes());
             System.out.println(" [x] Sent '" + message + "'");
         }
         channel.close();
