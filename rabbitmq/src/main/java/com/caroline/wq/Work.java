@@ -29,6 +29,9 @@ public class Work {
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         System.out.println(hashCode + " [*] Waiting for messages. To exit press CTRL+C");
 
+        //设置最大服务转发消息数量
+        int prefetchCount = 1;
+        channel.basicQos(prefetchCount);
         QueueingConsumer consumer = new QueueingConsumer(channel);
         //指定消费队列
         boolean ack = false; //打开应答机制
