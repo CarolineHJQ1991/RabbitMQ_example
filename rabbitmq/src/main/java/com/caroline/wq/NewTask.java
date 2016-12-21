@@ -16,14 +16,15 @@ public class NewTask {
     //队列名称
     private final static String QUEUE_NAME = "workqueue";
     public static void main(String[] args) throws IOException, TimeoutException {
+        //创建连接和频道
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
         //声明队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-
-        for (int i = 0; i < 10; i++) {
+        //发送10条消息,依次在消息后面附加1-10个点
+        for (int i = 21; i < 31; i++) {
             String dots = "";
             for (int j = 0; j <= i; j++) {
                 dots += ".";

@@ -20,6 +20,7 @@ public class Work {
     public static void main(String[] argv) throws IOException, TimeoutException, InterruptedException {
         //区分不同工作进程的输出   TODO:这句话是什么意思
         int hashCode = Work.class.hashCode();
+        //创建连接和频道
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
@@ -51,4 +52,11 @@ public class Work {
                 Thread.sleep(1000);
         }
     }
+
+
+    /**
+     * TODO:为什么我没有像人家一样分开好几个工作者执行任务呢?
+     * TODO:我在执行任务的过程中,服务停止, 是先把原有的任务执行完
+     * TODO:才会报错
+     */
 }
