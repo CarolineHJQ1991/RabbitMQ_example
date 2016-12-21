@@ -32,7 +32,7 @@ public class Send {
         //指定一个队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         //发送的消息
-        String message = "Hello world";
+        String message = "Hello rabbitMQ!!";
         //往队列中发出一条信息
         channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
         System.out.println(" [x] Sent '" + message + "'");
