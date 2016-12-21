@@ -1,4 +1,4 @@
-package com.caroline.exe;
+package com.caroline.hello;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
