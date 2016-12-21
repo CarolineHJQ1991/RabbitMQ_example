@@ -31,13 +31,15 @@ public class Work {
 
         QueueingConsumer consumer = new QueueingConsumer(channel);
         //指定消费队列
-        channel.basicConsume(QUEUE_NAME, true, consumer);
+        boolean ack = false; //打开应答机制
+        channel.basicConsume(QUEUE_NAME, ack, consumer);
         while (true) {
             QueueingConsumer.Delivery delivery = consumer.nextDelivery();
             String message = new String(delivery.getBody());
             System.out.println(hashCode + " [x] Received '" + message + "'");
             doWork(message);
             System.out.println(hashCode + " [x] Done");
+            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
         }
     }
 

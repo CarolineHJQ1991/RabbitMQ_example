@@ -24,7 +24,7 @@ public class NewTask {
         //声明队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         //发送10条消息,依次在消息后面附加1-10个点
-        for (int i = 21; i < 31; i++) {
+        for (int i = 0; i < 5; i++) {
             String dots = "";
             for (int j = 0; j <= i; j++) {
                 dots += ".";
