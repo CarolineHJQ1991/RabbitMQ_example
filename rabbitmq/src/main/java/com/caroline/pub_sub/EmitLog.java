@@ -1,4 +1,4 @@
-package com.caroline.log;
+package com.caroline.pub_sub;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -25,7 +25,7 @@ public class EmitLog {
         Channel channel = connection.createChannel();
         //声明转发器和类型
         channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-        String message = new Date() + " : log something";
+        String message = new Date() + " : pub_sub something";
         //发送消息改为发送到转发器
         channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
 
