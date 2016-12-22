@@ -26,6 +26,7 @@ public class EmitLog {
         //声明转发器和类型
         channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
         String message = new Date() + " : log something";
+        //发送消息改为发送到转发器
         channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
 
         System.out.println(" [x] Sent '" + message + "'");
